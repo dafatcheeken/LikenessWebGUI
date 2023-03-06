@@ -11,8 +11,8 @@ bg = '''
 }
 </style>
 '''
-
-likenessArr = np.load('LikenessArray.npy')
+with np.load('foo.npz') as data:
+  likenessArr = data
 
 st.markdown(bg, unsafe_allow_html=True)
 
