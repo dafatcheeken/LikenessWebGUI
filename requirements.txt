@@ -1,4 +1,4 @@
-clip==0.2.0
+git+https://github.com/openai/CLIP.git
 numpy==1.24.1
 Pillow==9.4.0
 streamlit==1.19.0
