@@ -31,7 +31,7 @@ def update_image():
     with torch.no_grad():
         image = preprocess(image1).unsqueeze(0).to(device)
         image_features = model.encode_image(image).numpy()
-    likenesseval.write("Current Likeness: "+ str(round(likeness_score(image_features))[0],4))
+    likenesseval.write("Current Likeness: "+ str(round(likeness_score(image_features)[0],4)))
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
