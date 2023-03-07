@@ -24,6 +24,7 @@ imagebox = st.empty()
 likenesseval = st.empty()
 likenesseval.markdown("<br><br><br><br><br><br><br><br>Current Likeness: ", unsafe_allow_html = True)
 
+@st.cache(ttl=60)
 def update_image():
     imagebox.image(picture)
     image1 = Image.open(picture)
@@ -33,7 +34,12 @@ def update_image():
     likenesseval.write("Current Likeness: "+ str(likeness_score(image_features)))
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
+
+@st.cache
+def load_model():
+  return clip.load("ViT-B/32", device=device)
+
+model, preprocess = load_model()
 
 def sigmoid(x):
     return 1/(np.exp(-x) + 1)
